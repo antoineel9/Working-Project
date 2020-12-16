@@ -1,0 +1,72 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+@if (User.IsInRole("admin"))
+{
+    <section>
+        <h5 style="color:blue">Welcome, Admin!</h5>
+    </section>
+}
+else if (User.Identity.Name == null)
+{
+    <section>
+        <h5 style="color:blue">Welcome, Tax Professional!</h5>
+    </section>
+}else if (User.IsInRole("ceo"))
+{
+    <section>
+        <h5 style="color:blue">Welcome, CEO!</h5>
+    </section>
+}
+else
+{
+    <section>
+        <h5 style="color:blue">Welcome, @User.Identity.Name</h5>
+    </section>
+  
+    
+}
+
+<nav class="navbar alert-secondary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tax Squad</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/NewClients">NEW CLIENTS</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/Returns">Returns <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/Returns">New Returns</a></li>
+                    <li><a href="">Page 1-2</a></li>
+                    <li><a href="#">Page 1-3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
+<section class="text-center alert-primary">
+    <h1 class="display-2">Tax Squad</h1>
+    <form asp-page="./Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="'" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-page="./Index">Back to full List</a>
+            </p>
+        </div>
+    </form>
+</section>
+
+
+<div class="container">
+    <h3>Welcome  To Certifact Taxes</h3>
+    <p>Thank you for letting us handle all of your Tax Needs</p>
+</div>
+
